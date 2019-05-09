@@ -8,7 +8,7 @@ layout: home
       <div class="col-lg-10 offset-lg-1">
         <div class="d-flex justify-content-between pt-5 pb-3">
           <h1>TezosBTC.com</h1>
-          <div class="h3 mt-2 text-white-50"><small>a Hayek Lab project</small></div>
+          <div class="h3 mt-2 text-white-50"><small>a <a href="https://hayeklab.com/" class="text-white-50">Hayek Lab</a> project</small></div>
         </div>
         <div class="feature">
           <div class="row">
@@ -136,7 +136,7 @@ layout: home
               <td>{{ item.tezos_block }}</td>
               <td>{{ item.tezos_hash | truncate: 18 }}</td>
               <td>{{ item.bitcoin_block }}</td>
-              <td>{{ item.bitcoin_transaction | truncate: 18 }}</td>
+              <td><a href="https://www.blockchain.com/btc/tx/{{ item.bitcoin_transaction }}">{{ item.bitcoin_transaction | truncate: 18 }}</a></td>
             </tr>
             {%- endfor %}
           </tbody>
