@@ -1,0 +1,13 @@
+---
+---
+[
+{%- for item in site.data.hashes %}
+  {
+    "tezos_cycle": "{{ item.tezos_cycle }}",
+    "tezos_block": "{{ item.tezos_block }}",
+    "tezos_hash": "{{ item.tezos_hash }}",
+    "bitcoin_block": "{{ item.bitcoin_block }}",
+    "bitcoin_transaction": "{{ item.bitcoin_transaction }}"
+  }{% if forloop.last == false %},{% endif -%}
+{% endfor %}
+]

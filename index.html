@@ -1,0 +1,152 @@
+---
+layout: home
+---
+
+<div id="top">
+  <div class="container text-white">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="d-flex justify-content-between pt-5 pb-3">
+          <h1>TezosBTC.com</h1>
+          <div class="h3 mt-2 text-white-50"><small>a Hayek Lab project</small></div>
+        </div>
+        <div class="feature">
+          <div class="row">
+            <div class="col-12 col-lg text-center pt-2">
+              <h2>
+                The latest Tezos hash to be locked into the Bitcoin blockchain:
+                <small
+                  class="d-block text-monospace text-dark bg-light my-4">
+                  <!-- 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ -->
+                  {% for item in site.data.hashes limit:1 %}
+                    &nbsp;{{ item.tezos_hash | truncate: 35 }}&nbsp;
+                  {% endfor %}
+                  </small>
+              </h2>
+              <p>
+                {% for item in site.data.hashes limit:1 %}
+                  <a href="https://www.blockchain.com/btc/tx/{{ item.bitcoin_transaction }}" class="text-white-50">Block Number:
+                    {{ item.bitcoin_block }}
+                  </a>
+                {% endfor %}
+              </p>
+            </div>
+            <div class="col-12 col-lg offset-lg-1">
+              <div class="p-5 py-lg-0 pr-lg-0">
+                <a href="#what" class="btn btn-outline-light btn-block btn-lg">What is this?</a>
+                <a href="#how" class="btn btn-outline-light btn-block btn-lg">How is it done?</a>
+                <a href="#past-hashes" class="btn btn-outline-light btn-block btn-lg">Past Hashes</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section id="what">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+        <h1 class="display-4 text-center my-5">What is this?</h1>
+        <p><strong>Quick Summary:</strong> <i>Periodically, we will record a block hash from the Tezos blockchain into Bitcoin’s blockchain so that Tezos can benefit of the additional security provided by the most important proof-of-work, that of Bitcoin’s.</i></p>
+        <p>Tezos (XTZ) is a proof-of-stake crypto-currency while Bitcoin (BTC) is a proof-of-work crypto-currency. Proof-of-work crypto-currencies get their security by having a copy of the blockchain stored across multiple nodes and by having a proof-of-work visible within the blockchain itself. A proof-of-work is a consensus algorithm in which miners are competing against each others to be the first to discover a hash with a specific pattern of the block they are mining. Miners are those running computer nodes in Bitcoin tasked with adding new blocks, each containing a bundle of transactions. This collection of blocks forms the blockchain, essentially making it a secure append-only distributed database. Overall, Bitcoin’s blockchain is tamper resistant to alteration because of the combined computing power of all the computer nodes forming the network. Since Bitcoin has the highest market capitalization of all the cryptocurrencies, it’s proof-of-work has the most computing power thus is the most tamper resistant of all cryptocurrencies</p>
+        <p>Anyone who wants to alter a prior block in Bitcoin’s blockchain would have to spend an extraordinary amount of computing power in order to do so. As such, anything recorded in Bitcoin’s blockchain is as if it was written in cement that was getting more and more resistant to tampering as the cement dries, that is as more blocks are being added. The older a block is, the more proof-of-work would be required by a scammer in order to alter the content of that past block. Because of this, people have made use of bitcoin’s OP_RETURN transaction field to store the hash of, for example, a document as a proof of its existence at the time when the block containing this transaction was mined.</p>
+        <p>On the other hand, a proof-of-stake coin gets its security by having a copy of the blockchain stored across multiple nodes and that the same nodes have signed these blocks with their private keys to confirm its validity and authenticity. The advantage of proof-of-work is that it does not require any knowledge of the participants (Bitcoin miners) involved at the time of the block creation while proof-of-stake requires knowledge of the signers, in this case baking nodes who baked (mined in Bitcoin’s term) the blocks. By recording Tezos block hashes periodically into Bitcoin’s blockchain, Tezos will essentially piggyback off of Bitcoin’s proof-of-work and hence benefit as a result of an additional form of security. Even if say a decade from now, all the current Tezos baking nodes addresses that were used to sign blocks have changed or vanished and been replaced with new ones, the recording in Bitcoin’s blockchain will confirm the current Tezos blockchain without any knowledge of these past signers.</p>
+        <br />
+        <hr class="mt-4" />
+      </div>
+    </div>
+  </div>
+</section>
+<section id="how">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+        <h1 class="display-4 text-center my-5">How is it done?</h1>
+        <p>A specific Tezos block hash will be periodically stored in the Bitcoin blockchain by using two Bitcoin addresses and transferring an amount between them in rotation. These transactions will contains the extra information (Tezos block number and hash) in the OP_Return field.</p>
+        <p>Bitcoin Addresses used:</p>
+        <ul>
+          <li>14XVasxFatSctsYpwM9M4A8eL6K97xJppx</li>
+          <li>1PxUyHy92PPEUGbbg9JQgfGvPrid4L7ui2</li>
+        </ul>
+        <p>We are accepting donations from anyone who wants to support this project. People can donate to either of these two addresses. Thank you in advance!</p>
+        <p>The first Tezos block of every multiple of 10 cycles, starting with cycle 100, will have it’s block hash recorded in the Bitcoin blockchain by making a bitcoin transaction with the data in the OP_RETURN field. A delay of 5 cycles will be induced prior to making the first Bitcoin transaction so to ensure any possible Tezos forks will have been resolved (if there were any). In other words, the block hash of the first block of cycle 100 will be recorded not before the Tezos network is starting cycle 105.</p>
+        <p>The Bitcoin transactions containing this information will be recorded on this website (TezosBTC.com) and we recommend that many XTZ holders and bakers make a copy of it as an additional backup, as this will give an extra layer of security to the project. We plan on eventually storing this information in the Tezos blockchain itself so it will be self-reliant. Simply put, if your Tezos node is holding a copy of the Tezos blockchain, you will then have the Bitcoin transaction identifiers stored inside the Bitcoin blockchain.</p>
+        <p>The following figure illustrates the concept. The hash of the first Tezos block of cycle 100 will be recorded in the Bitcoin blockchain as a transaction. The specific Bitcoin block in which the Tezos block hash will be recorded will not be known until the Bitcoin miners decide to incorporate it into the next block to be mined.</p>
+        <a href="{{ site.baseurl }}/assets/images/graphic_1.png">
+          <img src="{{ site.baseurl }}/assets/images/graphic_1.png" alt="A graphic illustrating the above explained concept" class="img-fluid" />
+        </a>
+        <p>The Bitcoin transaction will store the Tezos block number and the hash in the OP_RETURN field in the following format:</p>
+        <p><strong>XTZ-[BLOCKNUM]-[HASH]</strong></p>
+        <p>Where: [BLOCKNUM] is the Tezos block number being recorded and [HASH] is the Tezos Block Hash (which starts with a capital B)</p>
+        <p>As mentioned previously, it is the first block of every cycle multiple of 10 starting with cycle 100. However, for the launch of this website and for providing an example, we have made our first record for demonstration purposes of the first block of cycle 90:</p>
+        <p><strong>XTZ-368641-BKrYfCGa3u5fFTVugAZoebFa4LMqhWBKHx6dgyYvUMygsLzptKS</strong></p>
+        <p>
+          This has been recorded in the Bitcoin blockchain inside this transaction:
+          <a href="https://www.blockchain.com/btc/tx/861c72b1fe6a3c3e2df3487a4ed8ffb1b3d684075d3fb914124f76ce1e504411">861c72b1fe6a3c3e2df3487a4ed8ffb1b3d684075d3fb914124f76ce1e504411</a>
+        </p>
+        <p>This website will record the transaction ID of the Bitcoin transaction that contains this hash. And again, it is highly recommended that we, Tezos investors and bakers should make a copy of this information.</p>
+        <h2 class="text-center font-weight-normal my-4">Future Improvments</h2>
+        <h3 class="h4 font-weight-normal">Recording of these Bitcoin transaction into Tezos own Blockchain</h3>
+        <p>As mentioned earlier, we are planning to add into the Tezos blockchain, the Bitcoin Transaction ID and the corresponding Tezos block number that was recorded for it. This information will also be signed using the Bitcoin private key. The following figure illustrates this concept.</p>
+        <a href="{{ site.baseurl }}/assets/images/graphic_2.png">
+          <img src="{{ site.baseurl }}/assets/images/graphic_2.png" alt="A graphic illustrating the above explained concept" class="img-fluid" />
+        </a>
+        <p>This means the Tezos blockchain itself will also contain the identifying transaction within the Bitcoin blockchain that contains its recording, providing a complete self-reliant blockchain, benefiting from the most important proof-of-work - Bitcoin’s POW, while benefiting from the benefits of passive income provided by Proof-of-Stake by existing Tezos stakeholders.</p>
+        <h3 class="h4 font-weight-normal">Collaboration with bitcoin miners</h3>
+        <p>Our hope for the future is to establish relationships with Bitcoin miners  and reward them for recording the Tezos block number and the Tezos block hash into the next Bitcoin block. Rather than a transaction ID, the miner could add it to be part of the block data itself. Hopefully, this will be possible to organize. Stay tuned.</p>
+        <br />
+        <hr class="mt-4" />
+      </div>
+    </div>
+  </div>
+</section>
+<section id="past-hashes">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+        <h1 class="display-4 text-center my-5">Past Hashes</h1>
+        <p>We start officially with the first block of cycle 100. But for inaugurating the launch of the site, we have added cycle
+        90.</p>
+        <p>
+          <small>
+            <em>
+              Some data is truncated, see the JSON format version for unabridged information.
+            </em>
+          </small>
+        </p>
+        <p>
+          <a href="{{ site.baseurl }}/hashes.json" class="badge badge-secondary">JSON Format</a>
+        </p>
+        <table class="table table-responsive-md">
+          <thead>
+            <tr>
+              <th scope="col">Tezos Cycle</th>
+              <th scope="col">Tezos Block</th>
+              <th scope="col">Tezos Hash</th>
+              <th scope="col">Bitcoin Block</th>
+              <th scope="col">Bitcoin Transaction</th>
+            </tr>
+          </thead>
+          <tbody class="text-monospace">
+            {% for item in site.data.hashes limit:50 -%}
+            <tr>
+              <td>{{ item.tezos_cycle }}</td>
+              <td>{{ item.tezos_block }}</td>
+              <td>{{ item.tezos_hash | truncate: 18 }}</td>
+              <td>{{ item.bitcoin_block }}</td>
+              <td>{{ item.bitcoin_transaction | truncate: 18 }}</td>
+            </tr>
+            {%- endfor %}
+          </tbody>
+        </table>
+        <br />
+        <hr class="mt-4" />
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="text-center text-muted mt-2 pt-4 pb-5">
+  Copyright &copy; 2019 Hayek Lab Inc.
+</footer>

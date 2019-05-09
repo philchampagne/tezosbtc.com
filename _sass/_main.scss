@@ -1,0 +1,25 @@
+// @import "./bootstrap/scss/bootstrap.scss";
+@import "./_bootstrap.scss";
+
+#top {
+  // background-color: hsl(213, 47%, 27%);
+  // background: rgb(36,66,101);
+  // background: linear-gradient(170deg, rgba(36,66,101,1) 0%, rgba(76,98,124,1) 100%);
+  // background: rgb(29,61,99);
+  // background: linear-gradient(175deg, rgba(29,61,99,1) 0%, rgba(89,121,158,1) 100%);
+  // background: rgb(29,61,99);
+  // background: linear-gradient(175deg, rgba(29,61,99,1) 0%, rgba(51,83,120,1) 100%);
+  // background: rgb(29,61,99);
+  // background: linear-gradient(170deg, rgba(29,61,99,1) 0%, rgba(62,82,106,1) 100%);
+  // background: rgb(22,57,98);
+  // background: linear-gradient(175deg, rgba(22,57,98,1) 0%, rgba(62,82,106,1) 100%);
+  // background: rgb(26,57,93);
+  // background: linear-gradient(170deg, rgba(26,57,93,1) 0%, rgba(62,82,106,1) 100%);
+  background: rgb(26,57,93);
+  background: linear-gradient(160deg, rgba(26,57,93,1) 0%, rgba(76,98,125,1) 100%);
+}
+
+.feature {
+  padding: 12rem 0;
+}
+
