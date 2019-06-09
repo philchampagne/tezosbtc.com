@@ -1,5 +1,12 @@
 [
   {
+    "tezos_cycle": "110",
+    "tezos_block": "450561",
+    "tezos_hash": "BLp8jorsHm7WnkzZir9ujcWqZ4GAxvWzjJfvcGoU9niitX2Rgdw",
+    "bitcoin_block": "580017",
+    "bitcoin_transaction": "4008840b6dd33825389ccc1b3bf5630d26497bc00b317a0ce9911be6d63e4788"
+  },
+  {
     "tezos_cycle": "100",
     "tezos_block": "409601",
     "tezos_hash": "BKoUtcfFEuCLt2bHh7K6QWQ6ZG6e1SVHWvDfubsNUgzdVPbBTmv",
